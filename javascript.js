@@ -1,39 +1,37 @@
-/*  0 = ROCK
-    1 = SCISSORS
-    2 = PAPER
- */
+/*
+0 = Rock
+1 = Paper
+2 = Scissors
+*/
 
-function choiceNumberToEquivalentString (choice) {
-    if (choice = 0) {return /Rock/i}
-    else if (choice = 1) {return /Scissors/i}
-    else {return /Paper/i}
-}
-
-function getComputerChoice () {
-    let choice = Math.floor(Math.random() * 3);
-    let stringChoice = choiceNumberToEquivalentString(choice);
-    return stringChoice;
-}
-
-function playRound (playerSelection, computerSelection) {
-    if ((playerSelection == /rock/i) && (computerSelection == /scissors/i)) {
-        return('You win! ${playerSelection} beats ${computerSelection}!');
-    } 
-    else if ((playerSelection == /scissors/i) && (computerSelection == /rock/i)) {
-        return('Computer wins! ${computerSelection} beats ${playerSelection}!')
-    } 
-    else if ((playerSelection == /paper/i) && (computerSelection == /rock/i)) {
-        return('Player wins! ${playerSelection} beats ${computerSelection}!');
-    }
-    else if ((computerSelection == /paper/i) && (playerSelection == /rock/i)) {
-        return('Computer wins! ${computerSelection} beats ${playerSelection}!');
-    }
-    else if ((computerSelection == /scissors/i) && (playerSelection == /paper/i)) {
-        return('Computer wins! ${computerSelection} beats ${playerSelection}!');
-    }
-    else {
-        return('Player wins! ${playerSelection} beats ${computerSelection}!');
+function getComputerChoice() {
+    let numberChoice = Math.floor(Math.random() * 3);
+    if (numberChoice == 0) {
+        return 'Rock';
+    } else if (numberChoice == 1) {
+        return 'Paper';
+    } else {
+        return 'Scissors';
     }
 }
 
-console.log(getComputerChoice());
+function playRound(computerChoice, computerChoiceString, playerChoice, playerChoiceString) {
+    if ((computerChoice + 1) == playerChoice) {
+        console.log('You win! ' + playerChoiceString + ' beats ' + computerChoiceString + '!');
+        return 1;
+    } else if ((computerChoice - 1) == playerChoice) {
+        console.log('Computer wins! ' + computerChoiceString + ' beats ' + playerChoiceString + '!');
+        return -1;
+    } else if (computerChoice == playerChoice) {
+        console.log('Tie!');
+        return 0;
+    } else if ((computerChoice - 2) == playerChoice) {
+        console.log('You win! ' + playerChoiceString + ' beats ' + computerChoiceString + '!');
+        return 1;
+    } else {
+        console.log('Computer wins! ' + computerChoiceString + ' beats ' + playerChoiceString + '!');
+        return -1;
+    }
+}
+
+playRound(1, 'Paper', 0, 'Rock');
