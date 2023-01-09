@@ -3,10 +3,10 @@ const paperButton = document.querySelector('#paperButton');
 const scissorsButton = document.querySelector('#scissorsButton');
 const scoreDiv = document.querySelector('#score-div');
 const outcomeDiv = document.querySelector('#outcome-div');
-const scores = {
-    computerScore: 0,
-    userScore: 0
-};
+const computerScoreP = document.querySelector('#computerScoreP');
+const userScoreP = document.querySelector('#userScoreP');
+let computerScore = 0;
+let userScore = 0;
 
 
 function getComputerChoice() {
@@ -15,7 +15,12 @@ function getComputerChoice() {
     return choices[number];
 }
 
-function playRound(userChoice, computerChoice, scores) {
+function updateScores(userScore, computerScore) {
+    userScoreP.innerText = `Your score: ${userScore}`;
+    computerScoreP.innerText = `Computer score: ${computerScore}`;
+}
+
+function playRound(userChoice, computerChoice) {
     if (computerChoice === userChoice) {
         let p = document.createElement('p');
         p.innerText = `Tie! Both picked ${userChoice}`;
@@ -24,65 +29,71 @@ function playRound(userChoice, computerChoice, scores) {
         let p = document.createElement('p');
         p.innerText = `Computer wins! ${computerChoice} beats ${userChoice}`;
         outcomeDiv.appendChild(p);
-        scores.computerScore++;
+        computerScore++;
     } else if ((userChoice === 'Rock') && (computerChoice === 'Scissors')) {
         let p = document.createElement('p');
         p.innerText = `User wins! ${userChoice} beats ${computerChoice}`;
         outcomeDiv.appendChild(p);
-        scores.userScore++
+        userScore++;
     } else if ((userChoice === 'Paper') && (computerChoice === 'Scissors')) {
         let p = document.createElement('p');
         p.innerText = `Computer wins! ${computerChoice} beats ${userChoice}`;
         outcomeDiv.appendChild(p);
-        scores.computerScore++;
+        computerScore++;
     } else if ((userChoice === 'Paper') && (computerChoice === 'Rock')) {
         let p = document.createElement('p');
         p.innerText = `User wins! ${userChoice} beats ${computerChoice}`;
         outcomeDiv.appendChild(p);
-        scores.userScore++;
+        userScore++;
     } else if ((userChoice === 'Scissors') && (computerChoice === 'Rock')) {
         let p = document.createElement('p');
         p.innerText = `Computer wins! ${computerChoice} beats ${userChoice}`;
         outcomeDiv.appendChild(p);
-        scores.computerScore++;
+        computerScore++;
     } else if ((userChoice === 'Scissors') && (computerChoice === 'Paper')) {
         let p = document.createElement('p');
         p.innerText = `User wins! ${userChoice} beats ${computerChoice}`;
         outcomeDiv.appendChild(p);
-        scores.userScore++;
+        userScore++;
     }
+    console.log(`Computer: ${computerScore}`);
+    console.log(`User: ${userScore}`);
+    checkWinner();
 }
 
 rockButton.addEventListener('click', () => {
     let computerChoice = getComputerChoice();
     playRound('Rock', computerChoice);
+    updateScores(userScore, computerScore);
 });
 
 paperButton.addEventListener('click', () => {
     let computerChoice = getComputerChoice();
     playRound('Paper', computerChoice);
+    updateScores(userScore, computerScore);
 });
 
 scissorsButton.addEventListener('click', () => {
     let computerChoice = getComputerChoice();
     playRound('Scissors', computerChoice);
+    updateScores(userScore, computerScore);
 });
 
 
-function checkWinner(scores, outcomeDiv) {
-    if (scores.computerScore === 5) {
+function checkWinner() {
+    updateScores(userScore, computerScore);
+    if (computerScore === 5) {
         let h3 = document.createElement('h3');
-        h3.innerText = `Too bad! Computer won ${scores.computerScore} to ${scores.userScore}`;
+        h3.innerText = `Too bad! Computer won ${computerScore} to ${userScore}`;
         h3.style.color = 'red';
         outcomeDiv.appendChild(h3);
-    } else if (scores.userScore === 5) {
+        computerScore, userScore = 0;
+    } else if (userScore === 5) {
         let h3 = document.createElement('h3');
-        h3.innerText = `Congratulations! You won ${scores.userScore} to ${scores.computerScore}`;
+        h3.innerText = `Congratulations! You won ${userScore} to ${computerScore}`;
         h3.style.color = 'green';
         outcomeDiv.appendChild(h3);
+        computerScore, userScore = 0;
     };
-
 };
 
-playGame(scores);
-console.log(scores.computerScore);
