@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container-1 {
+    margin: -1.6%;
+}
+
+header {
+    text-align: center;
+    background-color: #86E5FF;
+    color: #FFC93C;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+header > h1 {
+    font-size: 400%;
+    text-decoration: underline;
+}
+
+header > h3 {
+    font-size: 200%;
+}
+
+#game-div {
+    background-color: #FFC93C;
+    padding-top: 2%;
+}
+
+#game-div > h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 200%;
+    color: #86E5FF;
+    text-decoration: underline;
+    text-align: center;
+    padding-bottom: 2%;
+}
+
+#game-div > #buttons-div {
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    margin: auto;
+    padding-bottom: 5%;
+}
+
+.buttons {
+    margin: 2.5%;
+    padding: 2.5%;
+    border: 0.3rem solid #86E5FF;
+    background-color: #FFC93C;
+    border-radius: 7%;
+    font-size: 150%;
+}
+
+.buttons:hover {
+    box-shadow: 0 2px 5px #0081C9;
+}
+
+#score-div {
+    margin: 0;
+    background-color:#FFC93C;
+    text-align: center;
+    color: #86E5FF;
+    font-family: 'Inter', sans-serif;
+    font-size: 200%;
+}
+
+#outcome-div {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: #86E5FF;
+    font-family: 'Inter', sans-serif;
+    color: #FFC93C;
+    text-align: center;
+    width: 60%;
+    margin-left:auto;
+    margin-right: auto;
+    font-size: 200%;
+}
